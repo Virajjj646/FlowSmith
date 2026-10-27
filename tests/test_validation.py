@@ -1,39 +1,5 @@
-from flowsmith.schemas import Feature, Module, Plan, Requirements, Task
+from helpers import make_plan, make_task, make_req
 from flowsmith.validation import find_cycles, validate_plan
-
-
-def make_task(id, depends_on=(), module="Core", priority="must", covers=("F1",)):
-    return Task(
-        id=id,
-        title=f"Task {id}",
-        description="test task",
-        module=module,
-        size="S",
-        priority=priority,
-        depends_on=list(depends_on),
-        covers=list(covers),
-        acceptance_criteria=["it works"],
-    )
-
-
-def make_plan(*tasks):
-    return Plan(modules=[Module(name="Core", description="core")], tasks=list(tasks))
-
-
-def make_req(*feature_ids):
-    return Requirements(
-        app_name="Test",
-        summary="test app",
-        platform="web",
-        target_users=["testers"],
-        core_features=[
-            Feature(id=fid, name=f"Feature {fid}", description="d", source="stated")
-            for fid in (feature_ids or ("F1",))
-        ],
-        constraints=[],
-        assumptions=[],
-        gaps=[],
-    )
 
 
 def codes(report):
