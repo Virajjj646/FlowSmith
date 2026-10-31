@@ -54,3 +54,7 @@ class Task(StrictModel):
 class Plan(StrictModel):
     modules: list[Module]
     tasks: list[Task]
+
+class Clarification(BaseModel):
+    question: str
+    answer: str
